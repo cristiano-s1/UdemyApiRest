@@ -1,11 +1,10 @@
-﻿namespace Udemy.Api.Configurations
+﻿namespace Udemy.Api.Configurations;
+
+public class TokenConfiguration
 {
-    public class TokenConfiguration
-    {
-        public string Audience { get; set; }
-        public string Issuer { get; set; }
-        public string Secret { get; set; }
-        public int Minutes { get; set; }
-        public int DaysToExpiry { get; set; }
-    }
+    public string Audience { get; set; } = string.Empty;
+    public string Issuer { get; set; } = string.Empty;
+    public string Secret { get; set; } = string.Empty;
+    public int Minutes { get; set; }
+    public int DaysToExpiry { get; set; }
 }

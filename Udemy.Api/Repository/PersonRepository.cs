@@ -1,4 +1,4 @@
-﻿using Udemy.Api.Context;
+using Udemy.Api.Context;
 using Udemy.Api.Models;
 using Udemy.Api.Repository.Generic;
 
@@ -6,9 +6,9 @@ namespace Udemy.Api.Repository
 {
     public class PersonRepository : GenericRepository<Person>, IPersonRepository
     {
-        public PersonRepository(UdemyContext context) : base(context) { }
+        public PersonRepository(MSSQLContext context) : base(context) { }
 
-        public Person Disable(int id)
+        public Person? Disable(int id)
         {
             if (!_context.Persons.Any(p => p.Id.Equals(id))) 
                 return null;
@@ -33,7 +33,7 @@ namespace Udemy.Api.Repository
             return user;
         }
 
-        public List<Person> FindByName(string firstName, string lastName)
+        public List<Person> FindByName(string? firstName, string? lastName)
         {
             if (!string.IsNullOrWhiteSpace(firstName) && !string.IsNullOrWhiteSpace(lastName))
             {
@@ -52,7 +52,7 @@ namespace Udemy.Api.Repository
                 return _context.Persons.Where(x => x.FirstName.Contains(firstName)).ToList();
             }
 
-            return null;
+            return [];
         }
     }
 }

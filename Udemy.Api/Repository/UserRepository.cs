@@ -1,4 +1,4 @@
-﻿using System.Security.Cryptography;
+using System.Security.Cryptography;
 using System.Text;
 using Udemy.Api.Context;
 using Udemy.Api.Data.VO;
@@ -8,21 +8,21 @@ namespace Udemy.Api.Repository
 {
     public class UserRepository : IUserRepository
     {
-        private readonly UdemyContext _context;
+        private readonly MSSQLContext _context;
 
-        public UserRepository(UdemyContext context)
+        public UserRepository(MSSQLContext context)
         {
             _context = context;
         }
 
-        public User ValidateCredentials(UserVO user)
+        public User? ValidateCredentials(UserVO user)
         {
             var password = ComputeHash(user.Password, SHA256.Create());
 
             return _context.Users.FirstOrDefault(u => (u.UserName == user.UserName) && (u.Password == password));
         }
 
-        public User ValidateCredentials(string userName)
+        public User? ValidateCredentials(string userName)
         {
             return _context.Users.SingleOrDefault(u => (u.UserName == userName));
         }
@@ -34,13 +34,13 @@ namespace Udemy.Api.Repository
             if (user is null) 
                 return false;
 
-            user.RefreshToken = null;
+            user.RefreshToken = string.Empty;
             _context.SaveChanges();
 
             return true;
         }
 
-        public User RefreshUserInfo(User user)
+        public User? RefreshUserInfo(User user)
         {
             if (!_context.Users.Any(u => u.Id.Equals(user.Id))) 
                 return null;

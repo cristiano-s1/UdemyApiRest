@@ -1,8 +1,8 @@
-﻿namespace Udemy.Api.Data.Converter.Contract
+namespace Udemy.Api.Data.Converter.Contract
 {
     public interface IParser<O, D>
     {
-        D Parse(O origin);
-        List<D> Parse(List<O> origin);
+        D? Parse(O? origin);
+        List<D>? Parse(List<O>? origin);
     }
 }

@@ -1,11 +1,10 @@
 ﻿using System.Security.Claims;
 
-namespace Udemy.Api.Services
+namespace Udemy.Api.Services;
+
+public interface ITokenService
 {
-    public interface ITokenService
-    {
-        string GenerateAccessToken(IEnumerable<Claim> claims);
-        string GenerateRefreshToken();
-        ClaimsPrincipal GetPrincipalFromExpiredToken(string token);
-    }
+    string GenerateAccessToken(IEnumerable<Claim> claims);
+    string GenerateRefreshToken();
+    ClaimsPrincipal GetPrincipalFromExpiredToken(string token);
 }

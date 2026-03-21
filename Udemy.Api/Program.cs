@@ -1,3 +1,4 @@
+using System.Text;
 using EvolveDb;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -6,22 +7,21 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Net.Http.Headers;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using Serilog;
-using System.Text;
 using Udemy.Api.Configurations;
 using Udemy.Api.DependencyInjection;
 using Udemy.Api.Hypermedia.Enricher;
 using Udemy.Api.Hypermedia.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
-var appName = "REST APIs RESTful from 0 to Azure with .NET 8 and Docker";
+var appName = "REST APIs RESTful from 0 to Azure with .NET 10 and Docker";
 var appDescription = $"REST API RESTful developed in course {appName}";
 var appVersion = "v1";
 
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
-#region AUTENTICA«√O
+#region AUTENTICA√á√ÉO
 var tokenConfigurations = new TokenConfiguration();
 
 new ConfigureFromConfigurationOptions<TokenConfiguration>(
@@ -97,18 +97,11 @@ builder.Services.AddSwaggerGen(options =>
         Description = "JWT Authorization header using o Bearer scheme. Example: \"Authorization: Bearer {token}\""
     });
 
-    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    options.AddSecurityRequirement(document => new OpenApiSecurityRequirement
     {
         {
-            new OpenApiSecurityScheme
-            {
-                Reference = new OpenApiReference
-                {
-                    Type = ReferenceType.SecurityScheme,
-                    Id = "Bearer"
-                }
-            },
-            Array.Empty<string>()
+            new OpenApiSecuritySchemeReference("Bearer", document, string.Empty),
+            []
         }
     });
 
@@ -120,7 +113,8 @@ builder.Services.AddSwaggerGen(options =>
 #endregion
 
 #region CONNECTION STRING
-var connection = builder.Configuration.GetConnectionString("Default");
+var connection = builder.Configuration.GetConnectionString("Default")
+    ?? throw new InvalidOperationException("Connection string 'Default' was not found.");
 #endregion
 
 #region MIGRATIONS
@@ -186,6 +180,7 @@ var option = new RewriteOptions();
 option.AddRedirect("^$", "swagger");
 app.UseRewriter(option);
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

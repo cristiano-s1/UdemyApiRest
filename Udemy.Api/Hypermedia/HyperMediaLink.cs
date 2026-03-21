@@ -4,9 +4,9 @@ namespace Udemy.Api.Hypermedia
 {
     public class HyperMediaLink
     {
-        public string Rel { get; set; }
+        public string Rel { get; set; } = string.Empty;
 
-        private string _href;
+        private string _href = string.Empty;
         public string Href
         {
             get
@@ -23,7 +23,7 @@ namespace Udemy.Api.Hypermedia
                 _href = value;
             }
         }
-        public string Type { get; set; }
-        public string Action { get; set; }
+        public string Type { get; set; } = string.Empty;
+        public string Action { get; set; } = string.Empty;
     }
 }

@@ -1,55 +1,54 @@
-﻿using Udemy.Api.Models;
+using Udemy.Api.Models;
 using Udemy.Api.Data.VO;
 using Udemy.Api.Data.Converter.Contract;
 
-namespace Udemy.Api.Data.Converter.Implementations
+namespace Udemy.Api.Data.Converter.Implementations;
+
+public class PersonConverter : IParser<PersonVO, Person>, IParser<Person, PersonVO>
 {
-    public class PersonConverter : IParser<PersonVO, Person>, IParser<Person, PersonVO>
+    public Person? Parse(PersonVO? origin)
     {
-        public Person Parse(PersonVO origin)
+        if (origin == null) 
+            return null;
+
+        return new Person
         {
-            if (origin == null) 
-                return null;
+            Id = origin.Id,
+            FirstName = origin.FirstName,
+            LastName = origin.LastName,
+            Address = origin.Address,
+            Gender = origin.Gender
+        };
+    }
 
-            return new Person
-            {
-                Id = origin.Id,
-                FirstName = origin.FirstName,
-                LastName = origin.LastName,
-                Address = origin.Address,
-                Gender = origin.Gender
-            };
-        }
+    public PersonVO? Parse(Person? origin)
+    {
+        if (origin == null) 
+            return null;
 
-        public PersonVO Parse(Person origin)
+        return new PersonVO
         {
-            if (origin == null) 
-                return null;
+            Id = origin.Id,
+            FirstName = origin.FirstName,
+            LastName = origin.LastName,
+            Address = origin.Address,
+            Gender = origin.Gender
+        };
+    }
 
-            return new PersonVO
-            {
-                Id = origin.Id,
-                FirstName = origin.FirstName,
-                LastName = origin.LastName,
-                Address = origin.Address,
-                Gender = origin.Gender
-            };
-        }
+    public List<Person>? Parse(List<PersonVO>? origin)
+    {
+        if (origin == null) 
+            return null;
 
-        public List<Person> Parse(List<PersonVO> origin)
-        {
-            if (origin == null) 
-                return null;
+        return origin.Select(item => Parse(item)!).ToList();
+    }
 
-            return origin.Select(item => Parse(item)).ToList();
-        }
+    public List<PersonVO>? Parse(List<Person>? origin)
+    {
+        if (origin == null) 
+            return null;
 
-        public List<PersonVO> Parse(List<Person> origin)
-        {
-            if (origin == null) 
-                return null;
-
-            return origin.Select(item => Parse(item)).ToList();
-        }
+        return origin.Select(item => Parse(item)!).ToList();
     }
 }

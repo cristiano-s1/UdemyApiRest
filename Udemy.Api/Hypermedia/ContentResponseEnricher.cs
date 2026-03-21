@@ -22,7 +22,7 @@ namespace Udemy.Api.Hypermedia
 
         bool IResponseEnricher.CanEnrich(ResultExecutingContext response)
         {
-            if (response.Result is OkObjectResult okObjectResult)
+            if (response.Result is OkObjectResult { Value: not null } okObjectResult)
             {
                 return CanEnrich(okObjectResult.Value.GetType());
             }
@@ -41,23 +41,14 @@ namespace Udemy.Api.Hypermedia
                 }
                 else if (okObjectResult.Value is List<T> collection)
                 {
-                    ConcurrentBag<T> bag = new ConcurrentBag<T>(collection);
-
-                    Parallel.ForEach(bag, (element) =>
-                    {
-                        EnrichModel(element, urlHelper);
-                    });
+                    ConcurrentBag<T> bag = new(collection);
+                    await Task.WhenAll(bag.Select(element => EnrichModel(element, urlHelper)));
                 }
                 else if (okObjectResult.Value is PagedSearchVO<T> pagedSearch)
                 {
-                    Parallel.ForEach(pagedSearch.List.ToList(), (element) =>
-                    {
-                        EnrichModel(element, urlHelper);
-                    });
+                    await Task.WhenAll(pagedSearch.List.Select(element => EnrichModel(element, urlHelper)));
                 }
             }
-
-            await Task.FromResult<object>(null);
         }
     }
 }

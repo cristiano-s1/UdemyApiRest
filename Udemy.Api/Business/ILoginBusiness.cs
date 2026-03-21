@@ -1,11 +1,10 @@
-﻿using Udemy.Api.Data.VO;
+using Udemy.Api.Data.VO;
 
-namespace Udemy.Api.Business
+namespace Udemy.Api.Business;
+
+public interface ILoginBusiness
 {
-    public interface ILoginBusiness
-    {
-        TokenVO ValidateCredentials(UserVO user);
-        TokenVO ValidateCredentials(TokenVO token);
-        bool RevokeToken(string userName);
-    }
+    TokenVO? ValidateCredentials(UserVO user);
+    TokenVO? ValidateCredentials(TokenVO token);
+    bool RevokeToken(string userName);
 }

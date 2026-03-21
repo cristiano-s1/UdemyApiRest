@@ -1,13 +1,12 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Udemy.Api.Data.VO
-{
-    public class UserVO
-    {
-        [JsonPropertyName("userName")]
-        public string UserName { get; set; }
+namespace Udemy.Api.Data.VO;
 
-        [JsonPropertyName("password")]
-        public string Password { get; set; }
-    }
+public class UserVO
+{
+    [JsonPropertyName("userName")]
+    public string UserName { get; set; } = string.Empty;
+
+    [JsonPropertyName("password")]
+    public string Password { get; set; } = string.Empty;
 }

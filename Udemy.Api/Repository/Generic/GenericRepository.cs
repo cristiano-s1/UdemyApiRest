@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Udemy.Api.Context;
 using Udemy.Api.Models;
 
@@ -6,10 +6,10 @@ namespace Udemy.Api.Repository.Generic
 {
     public class GenericRepository<T> : IRepository<T> where T : BaseEntity
     {
-        protected UdemyContext _context;
+        protected MSSQLContext _context;
         private readonly DbSet<T> dataset;
 
-        public GenericRepository(UdemyContext context)
+        public GenericRepository(MSSQLContext context)
         {
             _context = context;
             dataset = _context.Set<T>();
@@ -20,7 +20,7 @@ namespace Udemy.Api.Repository.Generic
             return dataset.ToList();
         }
 
-        public T GetById(int id)
+        public T? GetById(int id)
         {
             return dataset.SingleOrDefault(p => p.Id.Equals(id));
         }
@@ -41,7 +41,7 @@ namespace Udemy.Api.Repository.Generic
             }
         }
 
-        public T Update(T item)
+        public T? Update(T item)
         {
             var result = dataset.SingleOrDefault(p => p.Id.Equals(item.Id));
 
@@ -96,7 +96,7 @@ namespace Udemy.Api.Repository.Generic
 
         public int GetCount(string query)
         {
-            var result = "";
+            string? result;
 
             using (var connection = _context.Database.GetDbConnection())
             {
@@ -104,10 +104,10 @@ namespace Udemy.Api.Repository.Generic
 
                 using var command = connection.CreateCommand();
                 command.CommandText = query;
-                result = command.ExecuteScalar().ToString();
+                result = command.ExecuteScalar()?.ToString();
             }
 
-            return int.Parse(result);
+            return int.TryParse(result, out var count) ? count : 0;
         }
     }
 }

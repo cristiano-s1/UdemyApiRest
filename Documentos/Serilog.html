@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Serilog no ASP.NET 10: A Caixa Preta das Suas Aplicações</title>
+  <link rel="icon" href="https://github.com/leandrocgsi/blog-images/blob/main/logos/favicon-16x16-1.png?raw=true" sizes="32x32" />
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f9f9f9; color:#1f2937; line-height:1.7; }
+    header { background:#363636; border-bottom:1px solid #e5e7eb; }
+    .header-content { max-width:800px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; padding:20px; }
+    .logo img, .stars img { max-width:200px; height:auto; }
+    main { max-width:800px; margin:40px auto; padding:30px 20px; background:#fff; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
+    h1 { color:#111827; font-size:28px; margin-bottom:20px; text-align:center; }
+    h2 { margin-top:30px; color:#111827; }
+    p { margin-bottom:18px; text-align:justify; }
+    ul { margin:16px 0 16px 24px; }
+    li { margin-bottom:10px; }
+    pre.diagram { background:#f3f4f6; border-radius:6px; padding:15px; overflow-x:auto; white-space:pre; font-family:Consolas, monospace; font-size:14px; line-height:1.4; color:#111; margin-bottom:25px; }
+    .highlight { background:#f3f4f6; padding:15px; border-left:4px solid #10b981; border-radius:4px; }
+    .link-button { display:inline-block; margin:12px 8px 0 0; padding:10px 20px; background:#2563eb; color:#fff; border-radius:6px; text-decoration:none; font-size:15px; transition:background .3s; }
+    .link-button:hover { background:#1d4ed8; }
+    footer { text-align:center; padding:40px 20px; background:#fff; margin-top:60px; border-top:1px solid #e5e7eb; }
+    .social-icons { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; padding-top:30px; }
+    .social-icons a { width:52px; height:52px; background:#fff; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.15); display:flex; align-items:center; justify-content:center; transition:transform .2s; text-decoration:none; }
+    .social-icons a:hover { transform:translateY(-2px); }
+    .social-icons img { max-width:36px; max-height:36px; }
+    #copyright-text { text-align:center; margin-top:25px; color:#4b5563; font-size:14px; }
+  </style>
+</head>
+<body>
+<header>
+  <div class="header-content">
+    <div class="logo"><a href="https://pub.erudio.com.br/meus-cursos"><img src="https://github.com/leandrocgsi/blog-images/blob/main/logos/cropped-teste_logo-2.png?raw=true" alt="Erudio Training"></a></div>
+    <div class="stars"><img src="https://github.com/leandrocgsi/blog-images/blob/main/logos/five_stars.png?raw=true" alt="Cinco Estrelas"></div>
+  </div>
+</header>
+
+<main>
+  <h1>Serilog no ASP.NET 10: A Caixa Preta das Suas Aplicações</h1>
+
+  <p>O Serilog é uma biblioteca de logging de código aberto desenvolvida para o ecossistema .NET, amplamente utilizada em aplicações ASP.NET 10. Diferente do logger padrão, que registra mensagens simples de texto, o Serilog oferece logs estruturados, geralmente em formato JSON, permitindo consultas detalhadas e integração com ferramentas de monitoramento modernas, como Seq, Elasticsearch e Grafana Loki.</p>
+
+  <h2>1. Conceito e importância do Serilog</h2>
+  <p>Em qualquer aplicação, compreender o que ocorre nos bastidores é essencial para diagnóstico e manutenção. O Serilog funciona como uma caixa preta, registrando eventos importantes — desde inicializações de serviços até erros críticos — de forma organizada. Essa abordagem facilita rastrear o comportamento da aplicação, identificar problemas rapidamente e reduzir o tempo de downtime.</p>
+
+  <h2>2. Vantagens do Serilog</h2>
+  <p>O Serilog apresenta vantagens significativas em comparação com o logging padrão do .NET. Primeiramente, os logs estruturados permitem filtrar informações por usuário, endpoint, tipo de erro ou qualquer propriedade customizada, oferecendo visibilidade precisa do sistema. Além disso, ele suporta múltiplos destinos, como console para desenvolvimento, arquivos rotativos em produção e serviços de nuvem para centralização e análise avançada. A personalização também é simples, permitindo adicionar contextos específicos, como ID de sessão ou nome da aplicação, e fornecer feedback detalhado durante cada requisição, incluindo método HTTP, status da resposta, tempo de execução e exceções. Por fim, integra-se de forma transparente ao <code>ILogger</code> do .NET, mantendo a simplicidade do logger nativo enquanto amplia suas capacidades.</p>
+
+  <h2>3. Uso do Serilog em produção</h2>
+  <p>Em ambientes de produção, logs detalhados são cruciais para garantir estabilidade e monitoramento efetivo. Com o Serilog, é possível registrar informações completas de requisições, erros e exceções, possibilitando identificar rapidamente pontos de falha. Além disso, a integração com dashboards em tempo real permite acompanhar métricas como número de requisições, taxas de erro e latência média, antecipando problemas antes que impactem os usuários.</p>
+
+  <h2>4. Boas práticas</h2>
+  <p>Para utilizar o Serilog de forma eficiente, recomenda-se priorizar logs estruturados e incluir propriedades contextuais relevantes, mas sem expor dados sensíveis, como senhas ou tokens. Ajustar níveis de log por ambiente é essencial: em desenvolvimento, níveis detalhados como <em>Debug</em> ou <em>Trace</em> ajudam no diagnóstico; em produção, níveis como <em>Warning</em>, <em>Error</em> ou <em>Critical</em> otimizam desempenho e armazenamento. Também é importante adotar políticas de retenção e integrar com ferramentas de observabilidade para alertas e dashboards em tempo real.</p>
+
+  <h2>5. Considerações finais</h2>
+  <p>O Serilog não apenas aprimora a qualidade dos logs, mas também transforma a maneira como os desenvolvedores monitoram e mantêm aplicações ASP.NET 10. Seu uso adequado contribui para diagnósticos mais rápidos, maior estabilidade e visibilidade completa do comportamento do sistema. Explorar seus recursos avançados, como filtros por nível de log e enriquecimento automático de eventos, é um passo natural para quem busca excelência em monitoramento de aplicações.</p>
+
+  <h2>6. Referências</h2>
+  <div style="margin-top:20px;">
+    <a href="https://serilog.net" target="_blank" class="link-button">Site Oficial do Serilog</a>
+    <a href="https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging" target="_blank" class="link-button">Logging no ASP.NET Core</a>
+    <a href="https://datalust.co/seq" target="_blank" class="link-button">Seq</a>
+    <a href="https://www.elastic.co/elasticsearch" target="_blank" class="link-button">Elasticsearch</a>
+    <a href="https://grafana.com/oss/loki" target="_blank" class="link-button">Grafana Loki</a>
+  </div>
+</main>
+
+
+<footer>
+  <div class="social-icons">
+    <a href="https://www.youtube.com/@erudiotraining" target="_blank" aria-label="YouTube">
+      <img src="https://github.com/leandrocgsi/blog-images/blob/main/logos/youtube_logo_min.png?raw=true" alt="YouTube" />
+    </a>
+    <a href="https://www.linkedin.com/company/erudiotraining" target="_blank" aria-label="LinkedIn">
+      <img src="https://github.com/leandrocgsi/blog-images/blob/main/logos/linkedin_logo_min.png?raw=true" alt="LinkedIn" />
+    </a>
+    <a href="https://github.com/leandrocgsi" target="_blank" aria-label="GitHub">
+      <img src="https://github.com/leandrocgsi/blog-images/blob/main/logos/github_logo_min.png?raw=true" alt="GitHub" />
+    </a>
+    <a href="https://pub.erudio.com.br/meus-cursos" target="_blank" aria-label="Udemy">
+      <img src="https://github.com/leandrocgsi/blog-images/blob/main/logos/udemy_logo.png?raw=true" alt="Udemy" />
+    </a>
+    <a href="https://www.instagram.com/erudiotraining" target="_blank" aria-label="Instagram">
+      <img src="https://github.com/leandrocgsi/blog-images/blob/main/logos/instagram.png?raw=true" alt="Instagram" />
+    </a>
+    <a href="https://www.facebook.com/erudiotraining" target="_blank" aria-label="Facebook">
+      <img src="https://github.com/leandrocgsi/blog-images/blob/main/logos/facebook.png?raw=true" alt="Facebook" />
+    </a>
+    <a href="https://www.threads.net/@erudiotraining" target="_blank" aria-label="Threads">
+      <img src="https://github.com/leandrocgsi/blog-images/blob/main/logos/threads.png?raw=true" alt="Threads" />
+    </a>
+    <a href="https://www.tiktok.com/@erudiotraining" target="_blank" aria-label="TikTok">
+      <img src="https://github.com/leandrocgsi/blog-images/blob/main/logos/tiktok.png?raw=true" alt="TikTok" />
+    </a>
+    <a href="https://x.com/erudiotraining" target="_blank" aria-label="X">
+      <img src="https://github.com/leandrocgsi/blog-images/blob/main/logos/twitter.png?raw=true" alt="X (Twitter)" />
+    </a>
+  </div>
+
+  <p id="copyright-text">
+    © Copyright - Erudio Training - 2011-<span id="current-year"></span> - CNPJ: 34.523.711/0001-62 - Todos os Direitos Reservados
+  </p>
+
+  <script>
+    document.getElementById("current-year").textContent = new Date().getFullYear();
+  </script>
+</footer>
+
+</body>
+</html>

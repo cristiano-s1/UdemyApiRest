@@ -2,25 +2,24 @@
 using Udemy.Api.Hypermedia;
 using Udemy.Api.Hypermedia.Abstract;
 
-namespace Udemy.Api.Data.VO
+namespace Udemy.Api.Data.VO;
+
+public class BookVO : ISupportsHyperMedia
 {
-    public class BookVO : ISupportsHyperMedia
-    {
-        [JsonPropertyName("id")]
-        public int Id { get; set; }
+    [JsonPropertyName("id")]
+    public int Id { get; set; }
 
-        [JsonPropertyName("title")]
-        public string Title { get; set; }
+    [JsonPropertyName("title")]
+    public string Title { get; set; } = string.Empty;
 
-        [JsonPropertyName("author")]
-        public string Author { get; set; }
+    [JsonPropertyName("author")]
+    public string Author { get; set; } = string.Empty;
 
-        [JsonPropertyName("price")]
-        public Decimal Price { get; set; }
+    [JsonPropertyName("price")]
+    public Decimal Price { get; set; }
 
-        [JsonPropertyName("launchDate")]
-        public DateTime LaunchDate { get; set; }
+    [JsonPropertyName("launchDate")]
+    public DateTime LaunchDate { get; set; }
 
-        public List<HyperMediaLink> Links { get; set; } = new List<HyperMediaLink>();
-    }
+    public List<HyperMediaLink> Links { get; set; } = new List<HyperMediaLink>();
 }
