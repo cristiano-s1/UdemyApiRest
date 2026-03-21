@@ -22,9 +22,9 @@ var appVersion = "v1";
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
 #region AUTENTICAÇÃO
-var tokenConfigurations = new TokenConfiguration();
+var tokenConfigurations = new TokenConfig();
 
-new ConfigureFromConfigurationOptions<TokenConfiguration>(
+new ConfigureFromConfigurationOptions<TokenConfig>(
         builder.Configuration.GetSection("TokenConfigurations")
     ).Configure(tokenConfigurations);
 

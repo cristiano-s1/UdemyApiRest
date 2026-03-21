@@ -1,6 +1,6 @@
 ﻿namespace Udemy.Api.Configurations;
 
-public class TokenConfiguration
+public class TokenConfig
 {
     public string Audience { get; set; } = string.Empty;
     public string Issuer { get; set; } = string.Empty;

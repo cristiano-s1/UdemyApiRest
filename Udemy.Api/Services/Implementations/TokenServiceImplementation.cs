@@ -9,9 +9,9 @@ namespace Udemy.Api.Services.Implementations;
 
 public class TokenServiceImplementation : ITokenService
 {
-    private readonly TokenConfiguration _configuration;
+    private readonly TokenConfig _configuration;
 
-    public TokenServiceImplementation(TokenConfiguration configuration)
+    public TokenServiceImplementation(TokenConfig configuration)
     {
         _configuration = configuration;
     }

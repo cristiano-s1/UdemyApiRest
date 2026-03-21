@@ -10,11 +10,11 @@ namespace Udemy.Api.Business.Implementations;
 public class LoginBusinessImplementation : ILoginBusiness
 {
     private const string DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
-    private readonly TokenConfiguration _configuration;
+    private readonly TokenConfig _configuration;
     private readonly IUserRepository _repository;
     private readonly ITokenService _tokenService;
 
-    public LoginBusinessImplementation(TokenConfiguration configuration, IUserRepository repository, ITokenService tokenService)
+    public LoginBusinessImplementation(TokenConfig configuration, IUserRepository repository, ITokenService tokenService)
     {
         _configuration = configuration;
         _repository = repository;
