@@ -1,6 +1,4 @@
-﻿using Udemy.Api.Hypermedia.Abstract;
-
-namespace Udemy.Api.Hypermedia.Utils
+﻿namespace Udemy.Api.Hypermedia.Utils
 {
     //HATEOAS
     public class PagedSearchVO<T> where T : ISupportsHyperMedia

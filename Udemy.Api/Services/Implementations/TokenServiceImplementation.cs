@@ -1,17 +1,10 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Security.Cryptography;
-using System.Text;
-using Udemy.Api.Configurations;
-
-namespace Udemy.Api.Services.Implementations;
+﻿namespace Udemy.Api.Services.Implementations;
 
 public class TokenServiceImplementation : ITokenService
 {
-    private readonly TokenConfiguration _configuration;
+    private readonly TokenConfig _configuration;
 
-    public TokenServiceImplementation(TokenConfiguration configuration)
+    public TokenServiceImplementation(TokenConfig configuration)
     {
         _configuration = configuration;
     }

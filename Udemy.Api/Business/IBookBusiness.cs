@@ -1,6 +1,3 @@
-using Udemy.Api.Data.VO;
-using Udemy.Api.Hypermedia.Utils;
-
 namespace Udemy.Api.Business;
 
 public interface IBookBusiness

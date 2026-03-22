@@ -1,11 +1,3 @@
-using Asp.Versioning;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using System.Net;
-using Udemy.Api.Business;
-using Udemy.Api.Data.VO;
-using Udemy.Api.Hypermedia.Filters;
-
 namespace Udemy.Api.Controllers;
 
 [ApiController]

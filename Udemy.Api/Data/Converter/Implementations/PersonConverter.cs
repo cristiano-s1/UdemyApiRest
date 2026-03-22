@@ -1,7 +1,3 @@
-using Udemy.Api.Models;
-using Udemy.Api.Data.VO;
-using Udemy.Api.Data.Converter.Contract;
-
 namespace Udemy.Api.Data.Converter.Implementations;
 
 public class PersonConverter : IParser<PersonVO, Person>, IParser<Person, PersonVO>

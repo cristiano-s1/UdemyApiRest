@@ -1,19 +1,3 @@
-using System.Text;
-using EvolveDb;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Rewrite;
-using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.Net.Http.Headers;
-using Microsoft.OpenApi;
-using Serilog;
-using Udemy.Api.Configurations;
-using Udemy.Api.DependencyInjection;
-using Udemy.Api.Hypermedia.Enricher;
-using Udemy.Api.Hypermedia.Filters;
-
 var builder = WebApplication.CreateBuilder(args);
 var appName = "REST APIs RESTful from 0 to Azure with .NET 10 and Docker";
 var appDescription = $"REST API RESTful developed in course {appName}";
@@ -21,10 +5,14 @@ var appVersion = "v1";
 
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
-#region AUTENTICAÇÃO
-var tokenConfigurations = new TokenConfiguration();
+#region SERILOG
+builder.AddSerilogLogging();
+#endregion
 
-new ConfigureFromConfigurationOptions<TokenConfiguration>(
+#region AUTENTICAÇÃO
+var tokenConfigurations = new TokenConfig();
+
+new ConfigureFromConfigurationOptions<TokenConfig>(
         builder.Configuration.GetSection("TokenConfigurations")
     ).Configure(tokenConfigurations);
 

@@ -1,7 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-using Udemy.Api.Context;
-using Udemy.Api.Models;
-
 namespace Udemy.Api.Repository.Generic
 {
     public class GenericRepository<T> : IRepository<T> where T : BaseEntity

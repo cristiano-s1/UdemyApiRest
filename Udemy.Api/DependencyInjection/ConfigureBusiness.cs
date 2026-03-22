@@ -1,7 +1,4 @@
-﻿using Udemy.Api.Business;
-using Udemy.Api.Business.Implementations;
-
-namespace Udemy.Api.DependencyInjection;
+﻿namespace Udemy.Api.DependencyInjection;
 
 public class ConfigureBusiness
 {

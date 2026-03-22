@@ -1,11 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.AspNetCore.Mvc.Routing;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Concurrent;
-using Udemy.Api.Hypermedia.Abstract;
-using Udemy.Api.Hypermedia.Utils;
-
-namespace Udemy.Api.Hypermedia
+﻿namespace Udemy.Api.Hypermedia
 {
     public abstract class ContentResponseEnricher<T> : IResponseEnricher where T : ISupportsHyperMedia
     {

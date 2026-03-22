@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace Udemy.Api.Data.VO;
+﻿namespace Udemy.Api.Data.VO;
 
 public class UserVO
 {

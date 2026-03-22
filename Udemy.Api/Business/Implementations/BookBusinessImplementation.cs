@@ -1,9 +1,3 @@
-using Udemy.Api.Data.Converter.Implementations;
-using Udemy.Api.Data.VO;
-using Udemy.Api.Hypermedia.Utils;
-using Udemy.Api.Models;
-using Udemy.Api.Repository.Generic;
-
 namespace Udemy.Api.Business.Implementations;
 
 public class BookBusinessImplementation : IBookBusiness

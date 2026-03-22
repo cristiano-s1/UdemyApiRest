@@ -1,5 +1,3 @@
-using Udemy.Api.Models;
-
 namespace Udemy.Api.Repository.Generic;
 
 public interface IRepository<T> where T : BaseEntity

@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
-
-namespace Udemy.Api.Hypermedia.Abstract
+﻿namespace Udemy.Api.Hypermedia.Abstract
 {
     public interface IResponseEnricher
     {

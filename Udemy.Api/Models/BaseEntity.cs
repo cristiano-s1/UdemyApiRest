@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Udemy.Api.Models;
+﻿namespace Udemy.Api.Models;
 
 public class BaseEntity
 {

@@ -1,6 +1,4 @@
-﻿using System.Security.Claims;
-
-namespace Udemy.Api.Services;
+﻿namespace Udemy.Api.Services;
 
 public interface ITokenService
 {
