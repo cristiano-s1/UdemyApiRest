@@ -1,6 +1,4 @@
-﻿using Udemy.Api.Data.VO;
-
-namespace Udemy.Api.Business.Implementations;
+﻿namespace Udemy.Api.Business.Implementations;
 
 public class FileBusinessImplementation : IFileBusiness
 {

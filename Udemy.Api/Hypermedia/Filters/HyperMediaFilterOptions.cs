@@ -1,6 +1,4 @@
-﻿using Udemy.Api.Hypermedia.Abstract;
-
-namespace Udemy.Api.Hypermedia.Filters
+﻿namespace Udemy.Api.Hypermedia.Filters
 {
     public class HyperMediaFilterOptions
     {

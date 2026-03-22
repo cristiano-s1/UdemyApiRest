@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
-
-namespace Udemy.Api.Hypermedia.Filters
+﻿namespace Udemy.Api.Hypermedia.Filters
 {
     public class HyperMediaFilter : ResultFilterAttribute
     {

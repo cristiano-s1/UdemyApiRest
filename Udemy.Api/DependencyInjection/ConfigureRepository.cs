@@ -1,9 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Udemy.Api.Context;
-using Udemy.Api.Repository;
-using Udemy.Api.Repository.Generic;
-
-namespace Udemy.Api.DependencyInjection;
+﻿namespace Udemy.Api.DependencyInjection;
 
 public class ConfigureRepository
 {
@@ -13,7 +8,6 @@ public class ConfigureRepository
         serviceCollection.AddScoped<IPersonRepository, PersonRepository>();
         serviceCollection.AddScoped<IUserRepository, UserRepository>();
 
-        //Connection Database
         serviceCollection.AddDbContext<MSSQLContext>(options => options.UseSqlServer(connection,
             sqlServerOptions => sqlServerOptions.CommandTimeout(300000)));
     }

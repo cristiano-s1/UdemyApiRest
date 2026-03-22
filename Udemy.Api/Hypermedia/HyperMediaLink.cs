@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace Udemy.Api.Hypermedia
+﻿namespace Udemy.Api.Hypermedia
 {
     public class HyperMediaLink
     {

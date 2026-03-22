@@ -1,7 +1,3 @@
-using Udemy.Api.Context;
-using Udemy.Api.Models;
-using Udemy.Api.Repository.Generic;
-
 namespace Udemy.Api.Repository
 {
     public class PersonRepository : GenericRepository<Person>, IPersonRepository

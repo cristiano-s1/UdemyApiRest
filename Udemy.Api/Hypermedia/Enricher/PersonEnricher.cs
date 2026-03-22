@@ -1,9 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Text;
-using Udemy.Api.Data.VO;
-using Udemy.Api.Hypermedia.Constants;
-
-namespace Udemy.Api.Hypermedia.Enricher
+﻿namespace Udemy.Api.Hypermedia.Enricher
 {
     public class PersonEnricher : ContentResponseEnricher<PersonVO>
     {

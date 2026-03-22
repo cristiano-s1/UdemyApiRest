@@ -1,8 +1,4 @@
-﻿using System.Text.Json.Serialization;
-using Udemy.Api.Hypermedia;
-using Udemy.Api.Hypermedia.Abstract;
-
-namespace Udemy.Api.Data.VO;
+﻿namespace Udemy.Api.Data.VO;
 
 public class BookVO : ISupportsHyperMedia
 {

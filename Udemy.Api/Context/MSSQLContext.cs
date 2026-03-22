@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Udemy.Api.Models;
-
-namespace Udemy.Api.Context;
+﻿namespace Udemy.Api.Context;
 
 public class MSSQLContext : DbContext
 {

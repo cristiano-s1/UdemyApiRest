@@ -1,7 +1,3 @@
-using Udemy.Api.Data.Converter.Contract;
-using Udemy.Api.Data.VO;
-using Udemy.Api.Models;
-
 namespace Udemy.Api.Data.Converter.Implementations;
 
 public class BookConverter : IParser<BookVO, Book>, IParser<Book, BookVO>

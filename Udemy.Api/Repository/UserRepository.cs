@@ -1,9 +1,3 @@
-using System.Security.Cryptography;
-using System.Text;
-using Udemy.Api.Context;
-using Udemy.Api.Data.VO;
-using Udemy.Api.Models;
-
 namespace Udemy.Api.Repository
 {
     public class UserRepository : IUserRepository

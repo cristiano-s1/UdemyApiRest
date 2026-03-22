@@ -1,7 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection.Extensions;
-using Udemy.Api.Services;
-using Udemy.Api.Services.Implementations;
-
+﻿
 namespace Udemy.Api.DependencyInjection;
 
 public class ConfigureService
